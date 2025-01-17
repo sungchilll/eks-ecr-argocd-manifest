@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: eks-ecr-argocd
-          image: 061039771693.dkr.ecr.ap-northeast-2.amazonaws.com/eks-ecr-argocd:latest
+          image: 061039771693.dkr.ecr.ap-northeast-2.amazonaws.com/eks-ecr-argocd:8d0d9b8a88a7f5e98ac705f08e0365a5cad31c8f
