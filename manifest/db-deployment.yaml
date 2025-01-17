@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql-container
+          image: mysql
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root1234
+            - name: MYSQL_USER
+              value: app  # "MYSQL_USERNAME"을 "MYSQL_USER"로 수정
+            - name: MYSQL_PASSWORD
+              value: app12345
+            - name: MYSQL_DATABASE
+              value: app
+
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: mysqldata
+            - mountPath: /docker-entrypoint-initdb.d
+              name: mysql-init # 중복 선언 해결
+      volumes:
+        - name: mysql-init
+          configMap:
+            name: mysql-init
+        - name: mysqldata
+          persistentVolumeClaim:
+            claimName: db-pvc
+
