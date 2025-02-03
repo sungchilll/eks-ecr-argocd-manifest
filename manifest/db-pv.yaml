@@ -10,6 +10,6 @@ spec:
   capacity:
     storage: 500Mi
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: db-storage
+  storageClassName: gp3
   hostPath:
     path: /home/ubuntu/app-with-argocd-project/mysql/data
