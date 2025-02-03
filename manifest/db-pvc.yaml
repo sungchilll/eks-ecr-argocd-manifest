@@ -8,4 +8,4 @@ spec:
   resources:
     requests:
       storage: 30Mi
-  storageClassName: db-storage
+  storageClassName: gp3
